@@ -5,14 +5,14 @@
 		"_postman_id": "61287e40-aaa7-a4ad-08d3-ce074e2607f5",
 		"description": "Adding a new data to my db\nVerifying data is added successfully\nUpdating Data to DB\nVerifying data is updated successfully\nDeleting data\nVerifying data deleted",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-	},
+	},sdsadasdasdsadasdasdasdas
 	"item": [
 		{
 			"name": "Adding Record to Database",
 			"event": [
 				{
 					"listen": "prerequest",
-					"script": {
+				asdasasasd	"script": {
 						"type": "text/javascript",
 						"exec": [
 							"//postman.setGlobalVariable(\"MyVar\",\"GlobalString\")"
