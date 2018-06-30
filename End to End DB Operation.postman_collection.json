@@ -1,0 +1,165 @@
+{
+	"variables": [],
+	"info": {
+		"name": "End to End DB Operation",
+		"_postman_id": "61287e40-aaa7-a4ad-08d3-ce074e2607f5",
+		"description": "Adding a new data to my db\nVerifying data is added successfully\nUpdating Data to DB\nVerifying data is updated successfully\nDeleting data\nVerifying data deleted",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding Record to Database",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"//postman.setGlobalVariable(\"MyVar\",\"GlobalString\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{ID}},\r\n    \"title\": \"Testing World\",\r\n    \"author\": \"TW Author\"\r\n  }"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Data Added Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code- Get Request\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"Testing World\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/{{ID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update record on server",
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/{{ID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 11,\r\n    \"title\": \"Testing World Updated\",\r\n    \"author\": \"TW Author\"\r\n}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Data Updated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"Testing World Updated\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/{{ID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Record",
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/{{ID}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Delete Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{Machine}}:{{Port}}/posts/{{ID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "AP1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"for(i=1;i<10;i++)",
+							"{",
+							"    console.log(\"Hello\")",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:3000/posts/1100012",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		}
+	]
+}
